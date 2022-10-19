@@ -1,10 +1,11 @@
 import java.io.*;
+import java.lang.Object.*;
 
 public class CheckingAccount {
     
     //Field
-    private double balance; //口座残高
-    private int number; //口座番号
+    private double balance;
+    private int number;
 
     //Constractor
     public CheckingAccount(int number){
@@ -12,19 +13,15 @@ public class CheckingAccount {
     }
 
     //Deposit method
-    //入出金額(amount) 
-    //【?】なんでamountはフィールドで宣言されていないのに普通に使えているの？→ioで受け取る変数だから？
     public void deposit(double amount){
         balance += amount;
     }
 
-    //Withdraw method (doesn't work without enough money)
-    //【?】書いてある通りにコード記述したと思うんだけど、なんで”InsufficientFundsException”が呼べないの？
-    //【?】突然登場する"needs"は何者？
+    //Withdraw method
     public void withdraw(double amount) throws InsufficientFundsException{
-        if(amount <= balance){  //if the account has enough money to withdrow
+        if(amount <= balance){
             balance -= amount;
-        }else{                  //if the account has enough money to withdrow
+        }else{
             double needs = amount - balance;
             throw new InsufficientFundsException(needs);
         }
